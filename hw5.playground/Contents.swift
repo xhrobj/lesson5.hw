@@ -13,11 +13,14 @@ class Person {
     
     private(set) var passport: Passport?
     
-    init(firstName: String, lastName: String, middleName: String, age: Int) {
+    init(firstName: String, lastName: String, middleName: String, age: Int, passport: Passport? = nil) {
         self.firstName = firstName
         self.lastName = lastName
         self.middleName = middleName
         self.age = age
+        if let passport = passport {
+            issuePassport(passport)
+        }
     }
     
     func issuePassport(_ passport: Passport) {
@@ -74,3 +77,7 @@ person.issuePassport(passport)
 print("\n")
 print("Гражданин:", person)
 print("Кому выдан паспорт:", passport.person ?? "Не выдан")
+
+let person2 = Person(firstName: "Ольга", lastName: "Логинова", middleName: "Владимировна", age: 18, passport: Passport(series: "23 45", number: "234567", dateOfIssue: Date()))
+print("\n")
+print(person2)
